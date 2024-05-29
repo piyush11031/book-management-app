@@ -1,0 +1,28 @@
+services:
+  mysql:
+    container_name: mysql-bsn
+    image: mysql
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQLDATA: /var/lib/mysql/data
+      MYSQL_DB: book_sharing_network
+    volumes:
+      - mysql:/data/mysql
+    ports:
+      - 5432:5432
+    networks:
+      - spring-demo
+#  mail-dev: todo This is for when we implement mailing
+#    container_name: mail-dev-bsn
+#    image: maildev/maildev
+#    ports:
+#      - 1080:1080
+#      - 1025:1025
+networks:
+  spring-demo:
+    driver: bridge
+
+volumes:
+  mysql:
+    driver: local
